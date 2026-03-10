@@ -12,7 +12,7 @@
             --bg-body: #010103;
             --bg-card-form: #0d0d1a;
             --accent-purple: #9b51e0;
-            --accent-cyan: #00e5ff; /* Warna Cyan untuk Kartu */
+            --accent-cyan: #00e5ff;
             --label-red: #ff0000;
             --input-bg: #151525;
             --btn-grad: linear-gradient(90deg, #38bdf8 0%, #a855f7 100%);
@@ -81,7 +81,7 @@
 
         .field { margin-bottom: 15px; }
         label { display: block; color: var(--label-red); font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
-        input, select, textarea { width: 100%; background: var(--input-bg); border: 1px solid #252535; border-radius: 8px; padding: 12px; color: #ccc; box-sizing: border-box; }
+        input, select, textarea { width: 100%; background: var(--input-bg); border: 1px solid #252535; border-radius: 8px; padding: 12px; color: #ccc; box-sizing: border-box; font-family: 'Rajdhani', sans-serif; }
 
         .btn-generate {
             width: 100%; padding: 15px; border-radius: 30px; border: none;
@@ -89,7 +89,7 @@
             font-weight: bold; cursor: pointer; margin-top: 10px;
         }
 
-        /* --- DESAIN KARTU IDENTITAS (EXACT MATCH) --- */
+        /* --- DESAIN KARTU IDENTITAS --- */
         #id-card-capture {
             position: absolute;
             left: -9999px;
@@ -103,47 +103,12 @@
             color: white;
         }
 
-        .card-header-text {
-            text-align: right;
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 0;
-        }
-
-        .card-title {
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            letter-spacing: 4px;
-            margin: 10px 0;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .card-line {
-            width: 100%;
-            height: 2px;
-            background-color: #004d4d;
-            margin-bottom: 30px;
-        }
-
-        .card-info-row {
-            display: flex;
-            margin-bottom: 15px;
-            font-family: 'Arial', sans-serif;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .card-label {
-            width: 140px;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-        }
-
-        .card-value {
-            color: white;
-            text-transform: uppercase;
-        }
+        .card-header-text { text-align: right; font-size: 14px; color: #777; margin-bottom: 0; }
+        .card-title { text-align: center; font-size: 28px; font-weight: bold; letter-spacing: 4px; margin: 10px 0; font-family: 'Arial', sans-serif; }
+        .card-line { width: 100%; height: 2px; background-color: #004d4d; margin-bottom: 30px; }
+        .card-info-row { display: flex; margin-bottom: 15px; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; }
+        .card-label { width: 140px; color: var(--accent-cyan); text-transform: uppercase; flex-shrink: 0; }
+        .card-value { color: white; text-transform: uppercase; }
 
     </style>
 </head>
@@ -159,18 +124,19 @@
     <div class="main-title">EAC <span>REGISTRASI 2</span></div>
     <div class="desc-title">Education Astronomy Creator</div>
 
-    <div class="form-container">
+    <div class="container form-container">
         <div class="field"><label>Nama Lengkap</label><input type="text" id="in-nama" placeholder="Nama asli..."></div>
-        <div class="field"><label>Umur</label><input type="number" id="in-umur" placeholder="23"></div>
+        <div class="field"><label>Umur</label><input type="number" id="in-umur" placeholder="minimal 12"></div>
         <div class="field">
             <label>Status</label>
             <select id="in-status">
+                <option>dan lain lain</option>
                 <option>Pelajar</option>
                 <option>Mahasiswa</option>
                 <option>Umum</option>
             </select>
         </div>
-        <div class="field"><label>Username TikTok</label><input type="text" id="in-tiktok" placeholder="Razerh aja"></div>
+        <div class="field"><label>Username TikTok</label><input type="text" id="in-tiktok" placeholder="Nama akun tiktokp"></div>
         <div class="field"><label>Alasan Bergabung</label><textarea id="in-alasan" rows="2" placeholder="Tulis alasan..."></textarea></div>
 
         <button class="btn-generate" onclick="generateIDCard()">GENERATE KARTU</button>
@@ -199,30 +165,33 @@
         </div>
         <div class="card-info-row">
             <div class="card-label">ALASAN:</div>
-            <div class="card-value">...</div>
+            <div class="card-value" id="out-alasan"></div>
         </div>
     </div>
 
     <script>
         function generateIDCard() {
             const nama = document.getElementById('in-nama').value;
+            const alasan = document.getElementById('in-alasan').value;
+            
             if(!nama) return alert("Isi nama dulu!");
+            if(!alasan) return alert("Alasannya diisi juga ya!");
 
-            // Masukkan data ke kartu
+            // Menyambungkan input ke kartu
             document.getElementById('out-nama').innerText = nama;
             document.getElementById('out-umur').innerText = document.getElementById('in-umur').value;
             document.getElementById('out-status').innerText = document.getElementById('in-status').value;
             document.getElementById('out-tiktok').innerText = document.getElementById('in-tiktok').value;
+            document.getElementById('out-alasan').innerText = alasan; // Ini perbaikannya!
 
             const card = document.getElementById('id-card-capture');
 
-            html2canvas(card, { backgroundColor: null }).then(canvas => {
+            html2canvas(card, { backgroundColor: null, scale: 2 }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `ID_CARD_EAC_${nama}.png`;
                 link.href = canvas.toDataURL("image/png");
                 link.click();
 
-                // Redirect ke Grup WhatsApp
                 setTimeout(() => {
                     window.location.href = "https://chat.whatsapp.com/C0CyxNd1FYsEbCqtmHLncr?mode=gi_t";
                 }, 2000);
