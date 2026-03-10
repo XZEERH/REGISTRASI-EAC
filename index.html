@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAC Registration 2</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+        :root {
+            --bg-body: #010103;
+            --bg-card: #0d0d1a;
+            --accent-purple: #9b51e0;
+            --accent-blue: #38bdf8;
+            --accent-red: #ff0000; /* Warna Merah Label */
+            --input-bg: #151525;
+            --btn-grad: linear-gradient(90deg, #38bdf8 0%, #a855f7 100%);
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+        }
+
+        /* --- LOGO ORBIT (3 ORBIT & TRANSPARAN) --- */
+        .logo-area {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .eac-badge {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+            background: transparent; /* Pastikan transparan */
+        }
+
+        .orbit {
+            position: absolute;
+            border-radius: 50%;
+            width: 130px;
+            height: 48px;
+            border: 1.5px solid;
+        }
+
+        /* Orbit 1: Ungu */
+        .o1 { 
+            border-color: var(--accent-purple);
+            transform: rotate(45deg); 
+            animation: orbAnim 3s linear infinite; 
+        }
+        /* Orbit 2: Biru */
+        .o2 { 
+            border-color: var(--accent-blue);
+            transform: rotate(-45deg); 
+            animation: orbAnim 4s linear infinite reverse; 
+        }
+        /* Orbit 3: Merah (Balik lagi!) */
+        .o3 { 
+            border-color: var(--accent-red);
+            transform: rotate(90deg); 
+            animation: orbAnim 5s linear infinite; 
+            opacity: 0.7;
+        }
+
+        @keyframes orbAnim {
+            0% { transform: rotate(var(--tw-rotate, 0deg)) scaleY(1); }
+            100% { transform: rotate(calc(var(--tw-rotate, 0deg) + 360deg)) scaleY(1); }
+        }
+
+        /* --- HEADER --- */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .main-title span { color: #a855f7; text-shadow: 0 0 15px #a855f7; }
+
+        .desc-title {
+            color: #e67e22;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+        }
+
+        /* --- FORM --- */
+        .container {
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 380px;
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .field { margin-bottom: 20px; }
+        
+        label {
+            display: block;
+            color: var(--accent-red); /* Label Merah */
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid #252535;
+            border-radius: 10px;
+            padding: 12px;
+            color: #ccc;
+            outline: none;
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            border-radius: 30px;
+            border: none;
+            background: var(--btn-grad);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        /* --- KARTU MEMBER (HIDDEN) --- */
+        #card-download {
+            position: absolute;
+            left: -9999px;
+            width: 400px;
+            height: 600px;
+            background: #050510;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-area">
+        <div class="orbit o1" style="--tw-rotate: 45deg"></div>
+        <div class="orbit o2" style="--tw-rotate: -45deg"></div>
+        <div class="orbit o3" style="--tw-rotate: 90deg"></div>
+        <div class="eac-badge">EAC</div>
+    </div>
+
+    <div class="main-title">EAC <span>REGISTRASI 2</span></div>
+    <div class="desc-title">Education Astronomy Creator</div>
+
+    <div class="container">
+        <div class="field">
+            <label>Nama Lengkap</label>
+            <input type="text" id="nama" placeholder="Nama asli...">
+        </div>
+        <div class="field">
+            <label>Umur</label>
+            <input type="number" id="umur" placeholder="Contoh: 18">
+        </div>
+        <div class="field">
+            <label>Status</label>
+            <select id="status">
+                <option>Pelajar</option>
+                <option>Mahasiswa</option>
+                <option>Umum</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Username TikTok</label>
+            <input type="text" id="tiktok" placeholder="@username">
+        </div>
+        <div class="field">
+            <label>Alasan Bergabung</label>
+            <textarea id="alasan" rows="2" placeholder="Tulis alasan singkat..."></textarea>
+        </div>
+
+        <button class="btn-generate" onclick="generate()">GENERATE KARTU</button>
+    </div>
+
+    <div id="card-download">
+        <h1 style="font-family:Orbitron;">EAC MEMBER</h1>
+        <div style="margin-top:50px; text-align:left; font-size:20px;">
+            <p>NAME: <span id="c-nama"></span></p>
+            <p>STATUS: <span id="c-status"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function generate() {
+            const n = document.getElementById('nama').value;
+            if(!n) return alert("Isi nama dulu bro!");
+
+            document.getElementById('c-nama').innerText = n.toUpperCase();
+            document.getElementById('c-status').innerText = document.getElementById('status').value;
+
+            html2canvas(document.getElementById('card-download')).then(canvas => {
+                const a = document.createElement('a');
+                a.download = 'Member_EAC.png';
+                a.href = canvas.toDataURL();
+                a.click();
+                
+                setTimeout(() => {
+                    window.location.href = "https://chat.whatsapp.com/C0CyxNd1FYsEbCqtmHLncr?mode=gi_t";
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
