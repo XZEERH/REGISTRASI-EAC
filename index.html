@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EAC Registration 2</title>
+    <title>EAC Registration 1</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -75,7 +75,7 @@
         <div class="eac-badge">EAC</div>
     </div>
 
-    <div class="main-title">EAC <span>REGISTRASI 2</span></div>
+    <div class="main-title">EAC <span>REGISTRASI 1</span></div>
     <div class="desc-title">Education Astronomy Creator</div>
 
     <div class="form-container" id="form-section">
@@ -87,7 +87,7 @@
                 <option>lainnya</option><option>Pelajar</option><option>Mahasiswa</option><option>Umum</option>
             </select>
         </div>
-        <div class="field"><label>Username TikTok</label><input type="text" id="in-tiktok" placeholder="Tiktok.com/@username"></div>
+        <div class="field"><label>Nama akun Tiktok</label><input type="text" id="in-tiktok" placeholder="tiktok.com/@username"></div>
         <div class="field"><label>Alasan Bergabung</label><textarea id="in-alasan" rows="2" placeholder="Tulis alasan..."></textarea></div>
 
         <button class="btn-generate" onclick="generateIDCard()">KIRIM KE SISTEM DATA</button>
@@ -95,14 +95,14 @@
 
     <div id="loader">
         <div class="spin"></div>
-        <p style="font-family:'Orbitron'; font-size: 10px; margin-top: 10px; color: var(--accent-purple);">MENGHUBUNGKAN DATABASE...</p>
+        <p style="font-family:'Orbitron'; font-size: 10px; margin-top: 10px; color: var(--accent-purple);">MENGHUBUNGKAN SISTEM DATABASE...</p>
     </div>
 
     <div id="preview-section" class="form-container">
         <p style="color:var(--accent-cyan); font-weight:bold; margin-bottom: 15px;">KARTU IDENTITAS ANDA</p>
         
         <div id="id-card-capture">
-            <p class="card-header-text">EAC COMMUNITY</p>
+            <p class="card-header-text">EAC COMMUNITY 1</p>
             <div class="card-title">KARTU IDENTITAS EAC</div>
             <div class="card-line"></div>
             <div class="card-info-row"><div class="card-label">NAMA:</div><div class="card-value" id="out-nama"></div></div>
@@ -113,7 +113,7 @@
         </div>
 
         <button class="btn-generate" style="background:#22c55e" onclick="downloadAction()">UNDUH KARTU</button>
-        <button class="btn-generate" onclick="window.location.href='https://chat.whatsapp.com/C0CyxNd1FYsEbCqtmHLncr?mode=gi_t'">GABUNG WHATSAPP</button>
+        <button class="btn-generate" onclick="window.location.href='https://chat.whatsapp.com/C0CyxNd1FYsEbCqtmHLncr?mode=gi_t'">GABUNG GRUP</button>
     </div>
 
     <div class="db-box">
@@ -127,7 +127,7 @@
     <script>
         // CONFIG FIREBASE
         const firebaseConfig = {
-            databaseURL: "https://databasependaftaran-b1b43-default-rtdb.asia-southeast1.firebasedatabase.app/"
+            databaseURL: "https://pendaftaran-1-e9dc6-default-rtdb.asia-southeast1.firebasedatabase.app/"
         };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
